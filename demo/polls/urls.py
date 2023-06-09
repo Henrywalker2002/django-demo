@@ -1,11 +1,11 @@
-from django.urls import re_path,path
-
-
+from django.urls import re_path,path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'author', views.AuthorViewSet)
+
 
 urlpatterns = [
-    re_path(r'^$', views.index, name='index'),
-    path('temo', views.index),
-    path('createBook/', views.add_books, name = 'addBook'),
-    path('createAuthor/', views.add_authors, name = "addAuthor")
+    path('', include(router.urls))
 ]

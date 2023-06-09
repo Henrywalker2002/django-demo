@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'rest_framework'
+    'rest_framework', 
+    'rest_framework_swagger',
+    'drf_yasg', 
+    'book.apps.BookConfig'
 ]
 
 MIDDLEWARE = [
@@ -129,5 +132,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT' : '%d-%m-%Y'
+    'DATE_FORMAT' : '%d-%m-%Y',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
+    'DATE_INPUT_FORMATS' : ['%d-%m-%Y']
 }
+
+
