@@ -20,11 +20,16 @@ from django.conf.urls import include
 from rest_framework import permissions 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi 
+import django.contrib.auth.urls
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 schema_view = get_schema_view(openapi.Info("title", default_version="v1"), public= True, permission_classes= [permissions.AllowAny])
 
 urlpatterns = [
     path('docs/', schema_view.with_ui()),
     path('admin/', admin.site.urls),
-    path("polls/", include('polls.urls'))
+    path("polls/", include('polls.urls')),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('api/token', TokenObtainPairView.as_view()), 
+    path('api/token/refresh', TokenRefreshView.as_view())
 ]
